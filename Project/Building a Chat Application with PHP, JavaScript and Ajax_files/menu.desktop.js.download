@@ -1,0 +1,12 @@
+$(function(){
+$("#headermenudesktop").append("<ul class=\"navspace menucel ativo2 dm-2\">\
+<li><a href=\"http://mrbool.com/articles/listcomp.asp\" rel=\"nofollow\" class=\"menulink\">Content &nbsp;<small>&#9660;</small></a>\
+<ul class=\"submenu\">\
+<li><a href=\"http://mrbool.com/articles/listcomp.asp?txtsearch=&o=&keyword=&lido=&tipo=11&vis=-1&site=0&codigobanca=\">Articles</a></li>\
+<li><a href=\"http://mrbool.com/course\">Courses</a></li>\
+<li><a href=\"http://mrbool.com/pocket-video\">Single Videos</a></li>\
+</ul>\
+</li>\
+</ul>\
+");
+});

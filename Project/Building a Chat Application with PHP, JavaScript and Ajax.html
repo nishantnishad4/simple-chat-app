@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<!-- saved from url=(0080)http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044 -->
+<html lang="en-us" style="" class=" js no-touch"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Building a Chat Application with PHP, JavaScript and Ajax</title>
+		<meta name="description" content="In this article, we will build a chat application in PHP and AJAX, which will be a real time chat application that is used nowadays in almost all websites for support and maintenance"><link rel="canonical" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044">
+		<meta name="viewport" id="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=3.0,initial-scale=1.0">
+		
+		<!-- ICON APPLE -->
+		<link rel="apple-touch-icon" href="http://mrbool.com/favicon.png">	
+		<link rel="apple-touch-icon" sizes="72x72" href="http://mrbool.com/imagens/ico/mrbool72x.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="http://mrbool.com/imagens/ico/mrbool114x.png">
+		<link rel="apple-touch-icon" sizes="129x129" href="http://mrbool.com/imagens/ico/mrbool129x.png">
+		<!-- FAVICON HTML5-->
+		<link rel="icon" href="http://mrbool.com/favicon.png">
+		<!-- FAVICON IE-->
+		<link rel="icon" type="image/png" href="http://mrbool.com/favicon.png">
+		<link rel="stylesheet" type="text/css" href="./Building a Chat Application with PHP, JavaScript and Ajax_files/mrbool.css">
+		<link rel="stylesheet" type="text/css" href="./Building a Chat Application with PHP, JavaScript and Ajax_files/mrbool-responsive.css">
+		<link rel="stylesheet" type="text/css" href="./Building a Chat Application with PHP, JavaScript and Ajax_files/mrbool-header-footer.css">
+		<link rel="publisher" href="https://plus.google.com/100661587440603177063"><link type="text/css" rel="stylesheet" href="./Building a Chat Application with PHP, JavaScript and Ajax_files/shCoreDefault.css"><link href="./Building a Chat Application with PHP, JavaScript and Ajax_files/css" rel="stylesheet" type="text/css"><link href="./Building a Chat Application with PHP, JavaScript and Ajax_files/sharethis.css" rel="stylesheet" type="text/css"><link href="./Building a Chat Application with PHP, JavaScript and Ajax_files/artigo_style_2014.css" rel="stylesheet" type="text/css"><link href="./Building a Chat Application with PHP, JavaScript and Ajax_files/artigo_style_boxdonation.css" rel="stylesheet" type="text/css"><style>.img-twit{background-size:100%;width:54px;}.img-sharethis{background-size:100%;width:54px;}.img-linkedin{background-size:100%;width:55px;}/*#login, #before_down, #before_code{display: none;font-size:16px;font-family:Verdana;margin-top:30px;padding: 10px;border: 1px solid #d0d0d0;background-color: #f5f5f5;border-style: solid;border-color: grey;border-width: 1px;}#before_down a, #before_code a{color:#000;text-decoration:none;}#before_down a:hover, #before_code a:hover{text-decoration:underline;}*/#pop, #pop2, #poplink, #poplogin{display: none;}.AdSense{padding-top:71px;width:338px;}@media (max-width: 800px){.AdSense{padding-top:0px;}}.stBubble{margin-top:0px !important;}.stButton .stBubble_count{border-radius: 3px !important;background: #fff !important;margin:0px !important;}.stMainServices img{display:none;}#div_conteudo iframe{width:100%;}#div_conteudo>iframe>html>body{margin:0;}#div_conteudo>iframe>html>body>div>video{width:100%;}.box-donation{height:auto;}.box-donation .msg1{font-size:28px;}.box-donation .botao2{padding:0px;}</style>
+		<!--[if lt IE 9]>
+			<script src="http://mrbool.com/portal2013/js/modernizr.custom.js"></script>
+		<![endif]-->
+		<script id="facebook-jssdk" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/sdk.js.download"></script><script async="" type="text/javascript" src="http://de.tynt.com/deb/v2?id=abSFVAR9Kr4B-_acwqm_6l&amp;dn=TI&amp;cc=1&amp;r="></script><script type="text/javascript" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/p.js.download" async=""></script><script async="" type="text/javascript" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/abSFVAR9Kr4B-_acwqm_6l.js.download"></script><script type="text/javascript" id="async-buttons" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/async-buttons.js.download"></script><script async="" type="text/javascript" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/ti.js.download"></script><script async="" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/fbds.js.download"></script><script async="" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/analytics.js.download"></script><script src="./Building a Chat Application with PHP, JavaScript and Ajax_files/jquery.min.js.download"></script>
+		<script async="" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/menu.desktop.js.download"></script>
+		<script src="./Building a Chat Application with PHP, JavaScript and Ajax_files/jquery.scrollTo-2.1.1.js.download"></script>
+		<!-- VIEW PORT COM ZOOM EM MOBILE E PEGANDO MEDIA QUERY DO CSS -->
+		<script>
+		var mobile_timer = false;
+			if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
+			$('#viewport').attr('content','width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0');
+			$(window).bind('gesturestart',function () {
+				clearTimeout(mobile_timer);
+				$('#viewport').attr('content','width=device-width,minimum-scale=1.0,maximum-scale=3.0');
+				}).bind('touchend',function () {
+				clearTimeout(mobile_timer);
+				mobile_timer = setTimeout(function () {
+					$('#viewport').attr('content','width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0');
+				},1000);
+			});
+		}
+		</script>
+		<!-- GOOGLE ANALITICS JAVASCRIPT -->
+		<!--<script src="http://www.google-analytics.com/ga.js" type="text/javascript" async></script>-->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-25213615-1', 'auto', {
+                legacyCookieDomain: 'mrbool.com'
+            });
+            ga('require', 'displayfeatures');
+            ga('send', 'pageview');
+        </script>
+		<script>(function() {
+		  var _fbq = window._fbq || (window._fbq = []);
+		  if (!_fbq.loaded) {
+			var fbds = document.createElement('script');
+			fbds.async = true;
+			fbds.src = '//connect.facebook.net/en_US/fbds.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(fbds, s);
+			_fbq.loaded = true;
+		  }
+		  _fbq.push(['addPixelId', '909991555690879']);
+		})();
+		window._fbq = window._fbq || [];
+		window._fbq.push(['track', 'PixelInitialized', {}]);
+		</script>
+		<noscript>&lt;img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=909991555690879&amp;amp;ev=PixelInitialized" /&gt;</noscript>
+		<script src="./Building a Chat Application with PHP, JavaScript and Ajax_files/funcoes_mrbool.js.download" type="text/javascript"></script>
+		<script type="text/javascript" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/modernizr.custom.js.download"></script><script type="text/javascript" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/article.js.download"></script><script type="text/javascript" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/article_vote.js.download"></script><script type="text/javascript" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/shCore.js.download"></script><script type="text/javascript" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/shBrushJScript.js.download"></script><script type="text/javascript">SyntaxHighlighter.all();</script><script type="text/javascript">var switchTo5x=true;</script><script src="./Building a Chat Application with PHP, JavaScript and Ajax_files/jquery-ui.js.download"></script><script type="text/javascript" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/buttons.js.download"></script><script type="text/javascript">stLight.options({publisher: "6f216ae5-5b2a-44ad-89e4-fcab9e7e7984", onhover: false}); </script>
+	<link rel="stylesheet" type="text/css" href="./Building a Chat Application with PHP, JavaScript and Ajax_files/buttons.e80452d5e7cc382dad89d10f50bde247.css"><iframe id="stSegmentFrame" name="stSegmentFrame" frameborder="0" scrolling="no" width="0px" height="0px" sandbox="allow-scripts allow-same-origin" style="display:none;" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/saved_resource.html"></iframe><script type="text/javascript" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/get_counts"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_loader{background-color:#f6f7f9;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29487d;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f9;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_customer_chat_bounce_in{animation-duration:250ms;animation-name:fb_bounce_in}.fb_customer_chat_bounce_out{animation-duration:250ms;animation-name:fb_fade_out}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}.fb_mobile_overlay_active{background-color:#fff;height:100%;overflow:hidden;position:fixed;visibility:hidden;width:100%}@keyframes fb_fade_out{from{opacity:1}to{opacity:0}}@keyframes fb_bounce_in{0%{opacity:0;transform:scale(.8, .8);transform-origin:100% 100%}10%{opacity:.1}20%{opacity:.2}30%{opacity:.3}40%{opacity:.4}50%{opacity:.5}60%{opacity:.6}70%{opacity:.7}80%{opacity:.8;transform:scale(1.03, 1.03)}90{opacity:.9}100%{opacity:1;transform:scale(1, 1)}}</style></head>
+	<body style="">
+		<div class="dm-shadow"></div>
+        <section class="dm-shell">
+
+                
+                <header>
+				<span class="opacity"></span>
+                <nav class="lateral" style="height: 373px;">
+                    <ul style="height: 373px;">
+                        <li><strong><a href="http://mrbool.com/"><span class="font-dev">Wel</span><span class="font-media">come</span><span class="icon home"></span></a></strong></li>
+                        <li><a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" class="back" data-main="true">Back</a></li>
+
+						
+
+                        <li><a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" rel="nofollow"><span class="icon2 servicos"></span>Services<span></span></a>
+                            <ul>
+                                <li><h5>Services<span class="icon servicos"></span></h5></li>
+                                <li><a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" class="back">Back</a></li>
+                               <li><a href="http://mrbool.com/join/" rel="nofollow">Sign up</a></li>
+                                <li><a href="http://mrbool.com/feed/" rel="nofollow">RSS</a></li>
+                                <li><a href="http://mrbool.com/login/" rel="nofollow">Login</a></li>
+                                <li><a href="http://mrbool.com/articles/listcomp.asp?&amp;vis=-1&amp;site=-1">Last Posts</a></li>
+                                <li><a href="http://mrbool.com/portal/contact.asp" rel="nofollow">Contact us</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" rel="nofollow"><span class="icon2 tecnologia"></span>Channels<span></span></a>
+                            <ul>
+                                <li><h5>Channels<span class="icon tecnologia"></span></h5></li>
+                                <li><a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" class="back">Back</a></li>
+                                <li><a href="http://mrbool.com/channel/java">Java</a></li>
+								<li><a href="http://mrbool.com/channel/front-end-web">Front-end web</a></li>
+                                <li><a href="http://mrbool.com/channel/mobile">Mobile</a></li>
+                                <li><a href="http://mrbool.com/channel/database">Database</a></li>
+								<li><a href="http://mrbool.com/channel/php">PHP</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" rel="nofollow"><span class="icon2 cursos"></span>Courses<span></span></a>
+                            <ul>
+                                <li><h5>Courses<span class="icon cursos"></span></h5></li>
+                                <li><a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" class="back">Back</a></li>
+                                <li><a href="http://mrbool.com/course/front-end-courses">Front-end</a></li>
+								<li><a href="http://mrbool.com/course/mobile-courses">Mobile</a></li>
+                                <!--<li><a href="http://mrbool.com/course/java-courses">Java</a></li>-->
+                                <li><a href="http://mrbool.com/course/database-courses">Database</a></li>
+                                <!--<li><a href="http://mrbool.com/course/delphi-courses">Delphi</a></li>-->
+                                <li><a href="http://mrbool.com/course/">All courses</a></li>
+                            </ul>
+                        </li>
+
+						<li>
+                        	<a href="http://mrbool.com/portal/publish.asp"><span class="icon2 cursos"></span>Publish your Post</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <nav class="dm-bgnav-out">
+
+                    <div class="container-fluid dm-bgnav">
+
+                        <div class="container">
+                            <div class="devmenu">
+                            <a href="http://mrbool.com/" title="MrBool - Free Online Courses for Software Developers">
+                                                    <img class="logo-mrbool" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/logo-mrbool.png" alt="MrBool - Free Online Courses for Software Developers" title="MrBool - Free Online Courses for Software Developers">
+                                                </a>
+
+                                <i><a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" class="menu"></a></i>
+                                <a class="logo-mob" href="http://mrbool.com/">
+                                <span class="font-dev">Mr</span><span class="font-media">Bool</span>
+                                </a>
+                                <span id="headermenudesktop"><ul class="navspace menucel ativo2 dm-2"><li><a href="http://mrbool.com/articles/listcomp.asp" rel="nofollow" class="menulink">Content &nbsp;<small>▼</small></a><ul class="submenu"><li><a href="http://mrbool.com/articles/listcomp.asp?txtsearch=&amp;o=&amp;keyword=&amp;lido=&amp;tipo=11&amp;vis=-1&amp;site=0&amp;codigobanca=">Articles</a></li><li><a href="http://mrbool.com/course">Courses</a></li><li><a href="http://mrbool.com/pocket-video">Single Videos</a></li></ul></li></ul></span>
+
+                                <div class="login-box">
+
+                                    
+									<div class="login-btn">
+                                    <div style="border: 0 none !important;" class="popover1">
+                                    <img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/user-login.png" alt="Login">
+                                    </div>
+                                        <div class="pai">
+                                        <style>
+                                        .login-pop{
+                                            width: 235px;
+                                            height: 105px;
+                                            display: block;
+                                            line-height: 100%;
+                                            text-align: left;
+                                            padding: 20px 15px 15px 15px;
+                                            text-transform: none;
+                                            top: 63px;
+                                        }
+                                        .login-btn form{
+                                            padding-top: 0;
+                                        }
+                                        .login-pop form input[type=text]{margin: 0;}
+                                        .login-box>.login-btn .login-pop form input{
+                                            width: 220px;
+                                            margin-bottom: 10px;
+                                            border-radius: 0;
+                                            top: 63px;
+                                        }
+                                        .login-btn button{
+                                            margin: 0;
+                                            display: block;
+                                            width: 100%;
+                                            border-radius: 0;
+                                        }
+                                        .login-box>.login-btn>.pai>.login-pop>.login-form>form>a.cadastre-se{
+                                            display: inline-block;
+                                            color: #fff;
+                                            font-size:14px;
+                                            font-weight: bold;
+                                            margin-top: 15px;
+                                        }
+                                        .login-box>.login-btn>.pai>.login-pop>.login-form>form>a.esqueci-senha{
+                                            font-weight: normal;
+                                            float: right;
+                                        }
+
+                                        .linkFacebook {
+                                            background: #3D58A3;
+                                            background-position: 5px center;
+                                            background-size: 12%;
+                                            border: 1px solid #879ac0;
+                                            display: table;
+                                            cursor: pointer;
+                                            color: #ffffff;
+                                            font-family: Arial;
+                                            font-size: 15px;
+                                            font-weight: bold;
+                                            padding: 0px 5px 5px 5px;
+                                            text-shadow: 0 -1px 0 #354c8c;
+                                            text-decoration: none;
+                                            /*margin: 0 0 10px 0;*/
+                                            width: 100%;
+                                            height: auto;
+                                            text-transform: uppercase;
+                                            text-align: center;
+                                            -moz-box-sizing: border-box;
+                                            box-sizing: border-box;
+                                        }
+
+                                        .linkFacebook:hover {
+                                            background-color:#4A67B7;
+                                        }
+                                        .linkFacebook:active {
+                                            position:relative;
+                                            top:1px;
+                                        }
+
+                                        .linkFacebook img{
+                                            position: relative;
+                                            margin-right: 10px;
+                                            top: 4px;
+                                            width: 20px;
+                                        }
+
+                                        .linkFacebook span{
+                                            line-height: 100%;
+                                        }
+
+                                        .linkLogin {
+                                            background: #e54d26;
+                                            background-position: 5px center;
+                                            background-size: 12%;
+                                            border: 1px solid #e54d26;
+                                            display: table;
+                                            cursor: pointer;
+                                            color: #ffffff;
+                                            font-family: Arial;
+                                            font-size: 15px;
+                                            font-weight: bold;
+                                            padding: 5px;
+                                            text-shadow: 0 -1px 0 #354c8c;
+                                            text-decoration: none;
+                                            margin: 20px 0 0 0;
+                                            width: 100%;
+                                            height: auto;
+                                            text-transform: uppercase;
+                                            text-align: center;
+                                            -moz-box-sizing: border-box;
+                                            box-sizing: border-box;
+                                        }
+
+                                        .linkLogin:active {
+                                            position:relative;
+                                            top:1px;
+                                        }
+
+                                        </style>
+                                                    <div class="login-pop deslogado" style="display: none">
+                                                        <div class="login-form">
+                                                        <!-- <div class="seta"></div> -->
+                                                            <a href="https://www.facebook.com/dialog/oauth?client_id=183030088570010&amp;redirect_uri=http://mrbool.com/join/cadastro-facebook.php&amp;state=d3ceb2f4da549425116addac3aa4fed8&amp;scope=email&amp;store_id=0&amp;display=popup" class="linkFacebook" title="Login with facebook"><img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/facebook29.svg"><span>Login with facebook</span></a>
+
+                                                            <!-- <div style="
+															            background: #fff;
+															            height: 1px;
+															            margin: 10px;
+															            position: relative;
+															            margin: 22px 20px;
+															        "><div style="
+															            position: absolute;
+															            display: table;
+															            top: 50%;
+															            left: 50%;
+															            transform: translate(-50%, -50%);
+															            background: #302f31;
+															            padding: 0 5px 0 8px;
+															        ">or</div></div> -->
+
+                                                            <form name="f1" class="form-inline" action="http://mrbool.com/login/" method="POST">
+                                                            <!-- <input type="text" name="usuario" class="input-medium" placeholder="User"/>
+                                                            <input type="password" name="senha" class="input-medium" placeholder="Password"/>
+                                                            <input type="hidden" name="ac" value="1">
+                                                            <br><button type="submit">OK</button> -->
+                                                            <a href="http://mrbool.com/login/" class="linkLogin">login</a>
+                                                            <a href="http://mrbool.com/join/" class="cadastre-se">Sign up</a>
+                                                            <a href="http://mrbool.com/join/remember_password.asp" class="cadastre-se esqueci-senha">Forgot my password</a>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+									
+                                </div>
+                               <div class="dm-busca"><!-- BLOCO TOPO -->
+                                <!-- BUSCA EM TELA DESKTOP E TABLET -->
+                                <nav id="busca">
+                                    <form class="form-busca-site" action="http://mrbool.com/search/">
+                                    <input type="text" name="txtsearch" placeholder="Search">
+                                    <input type="hidden" name="o" value="rec">
+                                    <button type="submit"></button>
+                                    </form>
+                                </nav>
+                                </div>
+
+
+
+                        </div>
+                    </div>
+                </div></nav><!-- FIM MENU DESKTOP -->
+                                            
+                                                            <div class="form-busca-mobile">
+                                    <form class="form-busca-site" action="http://mrbool.com/search/">
+                                    <input class="btn-text-top" type="text" name="txtsearch" placeholder="Search">
+                                    <input type="hidden" name="o" value="rec">
+                                    <button class="btn-buscar-top" type="submit"></button>
+                                    </form>
+								</div>
+								</header>
+<link rel="author" href="https://plus.google.com/117832644452938875521">
+<style>
+.dm-shortcut{background-color:#3a3a3a;margin-top:-45px;}
+.dm-shortcut>div>div>div{font-size:14px;}	
+.dm-shortcut>div>div>div>ul{list-style:none;padding:0px;margin:0px;}
+.dm-shortcut>div>div>div>ul>li{background:url(../imagens/2014/arrow.png) 3px 20px no-repeat;display:inline-block;padding:18px;font-family:verdana;color:#fff;text-transform:uppercase;font-size:12px;}
+.dm-shortcut>div>div>div>ul>li>a{color:#fff; text-decoration:none;}
+.dm-shortcut>div>div>div>ul>li>a:hover{text-decoration:none; color: #F39161;
+text-shadow: 0px 0px 15px #178A8C;}
+.dm-shortcut>div>div>div>ul>li>a.dm-bt-shortcut{background:#de4767;padding:4px 10px 6px 10px;border-radius:2px; color:#fff; text-decoration:none;}
+.dm-shortcut>div>div>div>ul>li>a.dm-bt-shortcut:hover{background: #E75C83;text-shadow: 0px 0px 10px #fff;}
+.dm-shortcut>div>div>div>ul>li>a.dm-bt-shortcut,
+.dm-shortcut>div>div>div>ul>li>a,
+.dm-shortcut>div>div>div>ul>li>a:hover,
+.dm-shortcut>div>div>div>ul>li>a.dm-bt-shortcut:hover{
+-webkit-transition: all 250ms ease-out;
+-moz-transition: all 250ms ease-out;
+-ms-transition: all 250ms ease-out;
+ -o-transition: all 250ms ease-out;
+	transition: all 250ms ease-out;}
+span#vote-negative-error {font-family:verdana;font-size:14px;color:#F00;}
+span#vote-success {font-family:verdana;font-size:14px;color:#76C262;}
+form#form_voto_negativo > button.submit {color:white;background-color:grey;border-color:black;border-style:solid;border-width:1px;margin-top:20px;padding:10px;width:220px;display:block;}
+form#form_voto_negativo > button.submit:hover,
+form#form_voto_negativo > button.submit:focus {text-decoration: underline;cursor:pointer;}
+form#form_voto_negativo > div.loading {background: #FDFDFD;border: 1px solid #000;margin-top: 20px;display: block;padding: 10px 10px;font-family:Verdana;width:130px;}
+</style>
+<section class="container-fluid dm-shortcut">
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span12">
+				<ul>
+                    <li><a href="http://mrbool.com/favorite/addfavorite.asp?comp=34044" rel="nofollow">add to favorites</a></li>
+					
+					<li>
+					<a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" id="btnSourceCode" data-type="sourcecode" data-before="code" rel="nofollow">source code</a>	
+					</li>
+					
+                    <li><a href="http://mrbool.com/favorite/add_finished.asp?comp=34044" class="linkDEV" rel="nofollow">mark as viewed</a></li>
+                    <li><a class="linkDEV" href="http://mrbool.com/articles/addnote.asp?idcomp=34044" rel="nofollow">add a note</a></li>
+                </ul>
+			</div>
+		</div>
+	</div>      
+</section>
+<!--ABRIR AQUI-->
+<section class="container-fluid viewcomp">
+<div class="container">
+<div class="row-fluid div_corpo_post">
+	<div id="span_pri" class="span8" style="border:0px solid #000;">
+	
+		<div class="row-fluid">
+		<div class="span12">
+			<div id="div_feedback_post" class="box-notification" style="display: none;">
+				<a class="close-box-notification" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#">×</a>
+					<span>Please, log in to give us a feedback. <a class="link-notification" href="http://mrbool.com/login/login.asp?ret=articles/viewcomp.asp?comp=34044" rel="nofollow">Click here to login</a></span>
+				
+			</div>
+			<div id="login" class="box-notification" style="display: none;">
+				<a class="close-box-notification" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#">×</a>
+				<p>You must be logged to download.	<a class="link-notification" href="http://mrbool.com/login/login.asp?comp=34044">Click here to login</a></p>
+			</div>
+		
+			<div id="before_down" class="box-notification" style="display: none;">
+				<a class="close-box-notification" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#">×</a>
+				<p>MrBool is totally free and you can help us to help the Developers Community around the world</p>
+				<p><a class="link-notification stronger" href="https://secure.mrbool.com/support-us/?tpdown=d&amp;id=34044&amp;cb=">Yes, I'd like to help the MrBool and the Developers Community before download</a></p>
+				
+				<p><a class="link-notification gg_analytics" href="http://mrbool.com/download/down.asp?id=34044&amp;cb=" rel="nofollow" data-type="download"> No, I'd like to download without make the donation</a></p>
+			</div>
+			
+			<div id="before_code" class="box-notification" style="display: none;">
+				<a class="close-box-notification" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#">×</a>
+				
+				<p>MrBool is totally free and you can help us to help the Developers Community around the world</p>
+				<p><a class="link-notification stronger" href="https://secure.mrbool.com/support-us/?tpdown=c&amp;id=34044&amp;cb=">Yes, I'd like to help the MrBool and the Developers Community before download</a></p>
+				
+				<p><a class="link-notification gg_analytics" href="http://mrbool.com/download/downcode.asp?id=34044&amp;cb=" rel="nofollow" data-type="sourcecode"> No, I'd like to download without make the donation</a></p>
+			</div>
+		</div>
+		</div>
+		
+		<div class="row-fluid">
+		<div class="span12">
+			
+			<script>
+var staticSizesEboundDynamicAdsDesktop = ["728x90"];
+var staticSizesEboundDynamicAdsTablet = ["728x90"];
+var staticSizesEboundDynamicAdsMobile = ["300x250"];
+</script>
+<script src="http://publisher.eboundservices.com/dynamicAds/staticScript.js"></script> 
+		
+					
+			<div><h1 id="tituloPage" data-titulo="Building a Chat Application with PHP, JavaScript and Ajax" style="font-family: Conv_nexa light;font-size: 35px;font-weight: bold;color: #D6450E;margin: 35px 0px -20px 0px;">Building a Chat Application with PHP, JavaScript and Ajax</h1></div>
+			
+			<div style="padding-top:20px;"><p>In this article, we will build a chat application in PHP and AJAX, which will be a real time chat application that is used nowadays in almost all websites for support and maintenance</p></div>
+			
+			<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/JW5GlLnAsFw.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/JW5GlLnAsFw(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+			<div id="div_barrasocial"> 
+				<div id="box_social">	
+					<div class="facebook">
+	<span class="st_facebook_hcount" displaytext="Facebook" st_url="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span><span class="stMainServices st-facebook-counter" style="background-image: url(&quot;http://w.sharethis.com/images/2017/facebook_counter.png&quot;);">&nbsp;</span><span class="stArrow"><span class="stButton_gradient stHBubble" style="display: inline-block;"><span class="stBubble_hcount">295</span></span></span></span></span></span>
+</div>
+
+<div class="twitter">
+	<span class="st_twitter_hcount" displaytext="Tweet" st_url="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span><span class="stMainServices st-twitter-counter" style="background-image: url(&quot;http://w.sharethis.com/images/2017/twitter_counter.png&quot;);">&nbsp;</span><span class="stArrow"><span class="stButton_gradient stHBubble" style="display: inline-block;"><span class="stBubble_hcount">5</span></span></span></span></span></span>
+</div>
+
+<div class="linkedin">
+	<span class="st_linkedin_hcount" displaytext="Linkedin" st_url="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span><span class="stMainServices st-linkedin-counter" style="background-image: url(&quot;http://w.sharethis.com/images/2017/linkedin_counter.png&quot;);">&nbsp;</span><span class="stArrow"><span class="stButton_gradient stHBubble" style="display: inline-block;"><span class="stBubble_hcount">4</span></span></span></span></span></span>
+</div>
+
+<div class="sharethis">
+	<span class="st_sharethis_hcount" displaytext="Sharethis" st_url="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span><span class="stMainServices st-sharethis-counter" style="background-image: url(&quot;http://w.sharethis.com/images/2017/sharethis_counter.png&quot;);">&nbsp;</span><span class="stArrow"><span class="stButton_gradient stHBubble" style="display: inline-block;"><span class="stBubble_hcount">309</span></span></span></span></span></span>
+</div>
+				</div>			
+				<span id="ja_votou">0</span>
+
+<div id="box_fb_comp">			
+	
+	
+	<div class="float_left">
+		<a class="linkfeedback voted" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#"><img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/handUp.png" border="0"></a>
+	</div>
+	<div class="float_left">
+		<a class="linkfeedback voted" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#">&nbsp;Like (2)</a>
+	</div>
+	
+	
+	
+	<div class="separador_feedback_rodape2">
+		<a class="linkfeedback voted" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#"><img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/handDown_peq2.png" border="0"></a>
+	</div>
+	
+	<div class="float_left">
+		<a class="linkfeedback voted" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#"><span class="feedback_rodape1">&nbsp;(0)</span></a>
+	</div>
+	
+	
+	
+	<div class="t_clear_both"></div>
+</div>
+
+				<div class="t_clear_both"></div>
+			</div>
+		
+		</div>
+		
+		</div>
+		
+		<div class="row-fluid">
+		<div class="span12">
+			<div id="box_info_post_main">
+					
+			</div>
+			<div id="div_conteudo">
+			<article>
+				
+				
+				<div id="section_conteudo_post">
+					<h3>1. Creating the Index Page</h3><p>We
+will start by creating a file called "index.php", which will store the template
+of the chat application as well as the functionality of the application. In
+this section, we will only deal with the application template, functionality
+will be discussed in the later section. So let’s create the file and write the
+following code in it.</p><p><strong>Listing 1.</strong> Creating the index page</p><p></p><div class="div_listagem"><pre class="pre_listagem">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My Chat App&lt;/title&gt;
+        &lt;link rel="stylesheet" href="style.css" media="all" /&gt;
+    &lt;/head&gt;
+    
+    &lt;body&gt;
+        &lt;div id="container"&gt;
+            &lt;div id="chat_box"&gt;
+                &lt;div id="chat_data"&gt;
+                    &lt;span style="color:green;"&gt;Samarth: &lt;/span&gt;
+                    &lt;span style="color:brown;"&gt;Hey, How are you?&lt;/span&gt;
+                    &lt;span style="float:right;"&gt;12.30PM&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;form method="post" action="index.php"&gt;
+                &lt;input type="text" name="name" placeholder="Enter Name: " /&gt;
+                &lt;textarea name="enter message" placeholder="Enter Message"&gt;&lt;/textarea&gt;
+                &lt;input type="submit" name="submit" value="Send!" /&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre></div><p></p>
+
+<p>To develop other kinds of chats in such other programming languages or platforms, please refer some of our articles:</p><p></p><ul><li><a href="http://mrbool.com/how-to-create-chat-client-server-solution-in-java/26948" target="_blank">How to create Chat Client/Server solution in Java</a></li><li><a href="http://mrbool.com/create-a-chat-using-sockets/7243" target="_blank">Create a Chat using Sockets</a></li><li><a href="http://mrbool.com/how-to-create-chat-application-in-java/26778" target="_blank">How to create Chat Application in Java</a></li></ul><p></p>
+
+<p>This
+is just a simple HTML inside a PHP file with
+the title "My Chat App". Then we have
+linked a CSS file which we will create when styling our chat application.</p><p>Now,
+the main template is our chat
+application. We have created a div called "container", which will contain the
+whole chat application inside it. We then have another division with the id
+"chat_box", which will contain only the different chat messages that are being
+sent and received in real time. We will
+get the chat data through our database later in this article, but for now we
+will just enter some dummy data so that our chat application will look good.</p><p>We
+have created three different span tags for displaying the name of
+sender/receiver, the message and the time when the message was sent or
+receiver. We have used different styles which are basically different colors
+for displaying name, message and the time. This is just to make our application
+look beautiful. This was all about the content that we want inside the division
+with the id "chat_box". Now we will create a form which will be used by the
+user to enter his/her name and message and also it will have a button to send
+the message.</p><p>We
+have created a form which contains three different fields: name of the
+sender/receiver, message and the send button. We have used an input tag for
+storing the name because name does not exceed a single line. Then we have a
+textarea for the message and we have again used an input tag to display the
+button to send the message to the chat application.</p><p>So
+now it’s time to add some styles to our application to make it more awesome!</p><p>Create
+a file called "style.css" and write the following code inside this file.</p><p><strong>Listing 2.</strong> Creating the stylesheet for the chat application</p><p></p><div class="div_listagem"><pre class="pre_listagem"> 
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+ 
+body{
+    background: silver;
+}
+ 
+#container{
+    width: 40%;
+    background: white;
+    margin: 0 auto;
+    padding: 20px;
+}
+ 
+#chat_box{
+    width: 90%;
+    height: 400px;
+}
+ 
+#chat_data{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid silver;
+    font-weight: bold;
+}
+ 
+input[type="text"]{
+    width: 100%;
+    height: 40px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+ 
+input[type="submit"]{
+    width: 100%;
+    height: 40px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+ 
+textarea{
+    width: 100%;
+    height: 40px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+</pre></div><p></p><p>This
+is the code for the CSS for our project. We have used zero padding, margin and
+border for the whole web page. We have used the background for the body to be
+silver, which means that our web page will be silver and the chat application
+background will be white.</p><p>After
+this, we have used custom width and height for the chat application. We have
+used width in percentages so that our chat application will be responsive.
+Responsive application means that it will perfectly fit on all types of devices,
+whether you open it in a mobile browser or in a desktop.</p><p>For
+the form styling we have used the height to be 40 pixels and the width to be
+100%. We have used the solid border of color grey and the border radius is 5
+pixels. So this was all about styling our chat application. Here is a snapshot
+of our chat application with a dummy data.</p><p><img class="imagem_artigo" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/ChatPHPAjax01.png"></p><p><strong>Figure
+1.</strong> Having a look the chat application.</p><h3>2. Creating the
+Database and Table</h3><p>We
+will create a database called "chat" and inside this database we will create a
+table called "chat" and it will have four different columns: ID, Name, Message
+and Date.</p><p>Here
+is the screenshot of the table that we have to create.</p><p><img class="imagem_artigo" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/ChatPHPAjax02.png"></p><p><strong>Figure
+2.</strong> Our Database Table</p><p>Now
+we will insert some dummy data inside this table. Let’s create two new rows
+inside the table. Here is the snapshot of the data that you have to insert in
+the chat table.</p><p><img class="imagem_artigo" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/ChatPHPAjax03.png"></p><p><strong>Figure
+3.</strong> Filling Dummy Data</p><p>Now
+after saving these two rows in the database, if we browse the table, then we
+will see that there are two rows present inside the table "chat" which will act
+as dummy data for us.</p><p><img class="imagem_artigo" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/ChatPHPAjax07.png"></p><p><strong>Figure
+4.</strong> Dummy Data inside Database</p><p>Now
+we will create a new file called "db.php" to create a database connection which
+will make a connection between the database and the PHP file.</p><p>Create
+a file called "db.php" and add the following code to it.</p><p><strong>Listing 3.</strong> Creating the database</p><p></p><div class="div_listagem"><pre class="pre_listagem">&lt;?php
+ 
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db_name = "chat";
+ 
+$con = new mysqli($host, $user, $pass, $db_name);
+ 
+?&gt;
+</pre></div><p></p><p>This
+is a simple PHP database connection file in which we have created four
+different variables: host, user, pass and db_name. host will store the value
+"localhost" as we are not deploying the chat application on the real servers.
+user and pass will store the username and password for the phpmyadmin. By
+default, the password is null so we are keeping it blank.</p><p>Then
+we are storing the name of the database "chat" in the variable "db_name".</p><p>We
+are now creating a variable called "con" which will establish a connection
+between the database and the PHP file. It is a PDO method to establish a
+database connection. It will take four different arguments, which we have already created earlier in this
+file.</p><p>This
+is all we have to do in the "db.php" file.</p><p>Now
+we will have to edit the "index.php" file and add some lines of code to it.</p><p><strong>Listing 4.</strong> Editing the index file</p><p></p><div class="div_listagem"><pre class="pre_listagem">include ‘db.php’;</pre></div><p></p><p>So
+now our database connection has been
+established. To check this, we can refresh the chat application and see whether any error has occurred. If there is no error, it means that
+our connection has been established.</p><h3>3. Displaying the
+Chat data on the page</h3><p>In
+this section, we will see how we can display the chat data on the chat
+application from the database table using query in PHP. Recall that we have
+earlier created a table for the chat application and we inserted some dummy
+data inside the table. Now, we will display the same data inside the chat box
+using queries.</p><p>Inside
+the "index.php" file, recall that we have created a div with the id "chat_box".
+So inside this div we will add some PHP commands.</p><p><strong>Listing 5.</strong> Displaying the data</p><p></p><div class="div_listagem"><pre class="pre_listagem">&lt;?php
+	$query = "SELECT * FROM chat ORDER BY id";
+	$run = $con-&gt;query($query);
+
+	while($row = $run-&gt;fetch_array()) :
+?&gt;</pre></div><p></p><p><em>&lt;?php
+…. ?&gt;</em> is just a simple opening and closing PHP tags. We have created a
+variable called "query" which will store the MySQL query that we want to run.
+The query which we have used here means that we will grab all the data from the
+chat database table and arrange it in ascending order of time which basically means
+that the recent messages will be displayed at the bottom similar to any chat
+application that you might have used. We can also arrange the messages in
+descending order if we want just by adding "DESC" at the end of the query. In
+that case, our query will end like this "ORDER BY id DESC".</p><p>After
+this we have created a variable "run" which will link the query to the database
+connection that we created in the "db.php" file in the above section. We have
+used a while loop in which the condition to stop is whenever the table will be fully traversed.
+"fetch_array()" means that we are converting the database table row into an
+array so that we can easily use that in PHP.</p><p>Now
+inside the division with id "chat_data" we will add some more PHP code.</p><p><strong>Listing 6.</strong> Displaying the data dynamically</p><p></p><div class="div_listagem"><pre class="pre_listagem">&lt;div id="chat_data"&gt;
+	&lt;span style="color:green;"&gt;&lt;?php echo $row['name']; ?&gt; : &lt;/span&gt; 
+	&lt;span style="color:brown;"&gt;&lt;?php echo $row['msg']; ?&gt;&lt;/span&gt;
+	&lt;span style="float:right;"&gt;&lt;?php echo $row['date']; ?&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;?php endwhile; ?&gt;
+</pre></div><p></p><p>Remember
+that inside the span tags we had some chat data which we have written. So now
+we have removed that data and we have inserted some PHP command which will
+fetch data from the database table of the chat application. Remember that
+inside the while loop condition we have created an array from the row of the
+table and now we are using that array to echo name, message and date inside the
+chat application. This is simply done by the echo statement in PHP. After the
+end of this div we have created another PHP tag which simply says to end the
+while loop that we have created above.</p><p>So
+now our chat data is fetched from the database table of the application. Here
+is a screenshot of the same.</p><p><img class="imagem_artigo" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/ChatPHPAjax04.png"></p><p><strong>Figure
+5.</strong> First Look at the application</p><h3>4. Inserting Chat
+data into Table</h3><p>In
+this section, we will see how we can send the message from the form that we
+have created into the database table and in return it will be displayed inside
+the chat application from the table. So inside the "index.php" file after the
+form tag we will write some PHP code.</p><p><strong>Listing 7.</strong> Inserting data into database</p><p></p><div class="div_listagem"><pre class="pre_listagem">&lt;?php
+	if(isset($_POST['submit'])){
+		$name = $_POST['name'];
+		$msg = $_POST['enter_message'];
+
+		$query = "INSERT INTO chat (name,msg) VALUES ('$name','$msg')";
+		$run = $con-&gt;query($query);
+	}  
+?&gt;
+</pre></div><p></p><p>We
+have created an if statement which checks whether the submit button is pressed
+on the application. This is done with the help of a function called "isset" in
+PHP. We are checking whether the "submit" is pressed or not by accessing it
+from the PHP Super Global which is "$_POST" because the form method is post.</p><p>After
+that we have created two variables for storing the name and message from the
+form so that we can use a query to store the data in the database table. These
+values are stored from an array which is a $_POST array in PHP. Now we have
+created a variable "query" to store the name and message in the table and then
+we are connecting it with the database using a connection that we have created
+in the "db.php" file.</p><p>So
+now our chat data can be stored from the form in the database table and we can
+view it by refreshing the chat application page. Here is a screenshot of the
+same.</p><p><img class="imagem_artigo" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/ChatPHPAjax05.png"></p><p><strong>Figure
+6.</strong> Chat Application working with the form</p><h3>5. Using AJAX to
+make it Real Time</h3><p>In
+this section, we will see how to use AJAX to make our chat real time, which
+means that we will not have to refresh the page. Inside the "index.php" file we
+will add some code in the head tag.</p><p><strong>Listing 8.</strong> Making an AJAX Request</p><p></p><div class="div_listagem"><pre class="pre_listagem">&lt;script&gt;
+	function chat_ajax(){
+		var req = new XMLHttpRequest();
+		req.onreadystatechange = function() {
+			if(req.readyState == 4 &amp;&amp; req.status == 200){
+				document.getElementById('chat').innerHTML = req.responseText;
+			}
+		}
+		req.open('GET', 'chat.php', true);
+		req.send(); 
+	}
+	
+	setInterval(function(){chat_ajax()}, 1000)
+&lt;/script&gt;</pre></div><p></p><p>Now
+we will create a new file called "chat.php" and remove some code from
+"index.php" and move it into "chat.php".</p><p><strong>Listing 9.</strong> Some code conversion</p><p></p><div class="div_listagem"><pre class="pre_listagem">&lt;?php
+    include 'db.php';
+    $query = "SELECT * FROM chat ORDER BY id";
+    $run = $con-&gt;query($query);
+                
+    while($row = $run-&gt;fetch_array()) :
+?&gt;
+&lt;div id="chat_data"&gt;
+    &lt;span style="color:green;"&gt;&lt;?php echo $row['name']; ?&gt; : &lt;/span&gt; 
+    &lt;span style="color:brown;"&gt;&lt;?php echo $row['msg']; ?&gt;&lt;/span&gt;
+    &lt;span style="float:right;"&gt;&lt;?php echo $row['date']; ?&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;?php endwhile; ?&gt;</pre></div><p></p><p>So
+we are using a script tag inside the head tag so that we can make use of AJAX
+using JavaScript inside the PHP file. We have created a function called
+"chat_ajax" which will be automatically called whenever our chat application is
+loaded and it will automatically refresh the page so our chat will become real
+time.</p><p>We
+have created an HTTP Request object using AJAX. After this we are using an if
+condition to check whether the page has been successfully loaded. Suppose the
+page has been loaded and the Request is granted then we will use a JavaScript
+function "document.getElementById" to get any element by ID on the page and to
+change its HTML. So then we are changing it to display with the chat data from
+the database which is written in the "chat.php" file. Remember that chat.php file
+has the code which was inside the index.php file. We have separated the code so
+that we can easily understand the AJAX Request.</p><p>So
+now our chat application is complete.</p><p><img class="imagem_artigo" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/ChatPHPAjax06.png"></p><p><strong>Figure
+7.</strong> Real Time Chat Application</p><h3>Conclusion</h3><p>In
+this article, we have seen how we can use HTML inside a PHP file and then
+create a chat application which is capable of real time chatting. We have used
+a real database to store our chat data and retrieve it inside the chat
+application. Feel free to start the discussion if you are facing any problem.</p>
+				</div>
+				
+				</article>
+			</div>
+		</div>
+		</div>
+		<script src="./Building a Chat Application with PHP, JavaScript and Ajax_files/jquery-ui.js(1).download"></script>
+<script>
+$(document).ready(function() {
+
+	$(document).on("click", "#show_grid", function(){
+
+		var idcurso = $(this).attr("data-idcurso")
+		var emandamento = $(this).attr("data-statuscurso")
+
+		$.ajax({
+            type: "POST",
+            data: { id: idcurso, andamento: emandamento},
+            url: "../../articles/grid_curso.asp",
+            dataType: "html",
+            success: function(result){
+                $("#grid_curso").html(result);
+            },
+            beforeSend: function(){
+            	$('#show_grid').css({display:"none"});
+                $('.load').css({display:"block"});
+            },
+            complete: function(msg){
+                $('.load').css({display:"none"});
+            }
+        });
+  	});
+});
+</script>
+<link rel="stylesheet" href="./Building a Chat Application with PHP, JavaScript and Ajax_files/flaticon.css">
+
+<style>
+#botao_listar_curso {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+    font-family: Roboto,sans-serif;
+    font-size: 1.1em;
+    border-style: solid;
+    border-color: #fff !important;
+    border-width: 1px;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    background-color: #444444;
+    color: #E85C39 !important;
+    padding-left: 0 !important;
+}
+#botao_listar_curso p { 
+	text-align: center; 
+}
+#botao_listar_curso a {
+    color: #FFFFFF !important;
+    text-decoration: none;
+}
+
+.link_pockets {	color: #595454 !important; }
+
+#botao_listar_curso .nav {
+    display: inline-block;
+  	margin: 0 -5px 0 0 !important;
+    width: 50%;
+    background-image: linear-gradient(to bottom, #E85C39, #A5391F);
+    height: 35px;
+    padding-top: 10px;
+}
+#botao_listar_curso .nav a {
+    color: #FFF !important;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    text-decoration: none;
+}
+#botao_listar_curso > .nav a:hover {
+    text-decoration: none !important;
+    opacity: 0.7;
+}
+.nav_prev {
+    text-align: left;
+}
+.nav_next {
+    text-align: right;
+    position: relative;
+    border-left: 1px solid #47C2BC;
+}
+.nav_next:first-child {    
+	left: 50%;
+	border: medium none;
+    margin-left: 0;
+    position: relative; 
+}
+#grid_curso {
+    margin-top: -5px !important;
+    width: 100% !important;
+}
+#grid_curso p {
+    color: #E85C39;
+    cursor: pointer;
+    margin: 30px auto;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+.bnt_ver_grade {
+    background-color: #E85C39;
+    color: #ffffff;
+    padding: 8px 25px 10px;
+}
+.seta-bnt {
+    margin-left: -10px;
+}
+	
+.load { display: none; }
+.load > img { left: 49%; margin-bottom: 10px; position: relative; width: 25px; }
+
+#accordion { margin: 0 0 15px 15px!important; width: calc(100% - 30px); width: -webkit-calc(100% - 30px); }
+
+.containercurso { display: table; width: 100%; }
+
+.ui-accordion-header{
+	border-bottom: 1px solid #ddd;
+	background-color: #fff;
+	color: #595454;
+	outline: none;
+	border-radius: 2px 2px 0px 0px;
+	font-size: 16px;
+	line-height: 40px;
+	margin: 0px;
+	cursor: pointer;
+}
+
+.ui-state-active {
+	border-bottom: 1px solid #fff;
+	background-color: #E85C39;
+	color: #fff;
+	outline: none;
+	border-radius: 2px 2px 0px 0px;
+}
+
+.ui-state-hover {
+	border-bottom: 1px solid #fff;
+	background-color: #E85C39;
+    color: #fff;
+}
+
+.ui-accordion-content .listcurso {
+	background-color: #E85C39;
+	border-bottom: 1px solid #ddd;
+	color: #fff;
+	display: table-cell !important;
+	font-size: 16px !important;
+	font-weight: bold;
+	height: 100%;
+	margin-top: 0 !important;
+	padding: 10px 0;
+	text-align: center;
+	vertical-align: middle;
+	width: 35px !important;
+}
+
+.ui-accordion-content > div:hover .listcurso {
+    background-color: #ff9900;
+	color: #fff !important;
+}
+
+.ui-accordion-content .desccurso {
+	border-bottom: 1px solid #ddd;
+	color: #dfdfdf !important;
+	cursor: pointer;
+    display: table-cell !important;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 0 !important;
+    padding: 10px 0 10px 10px !important;
+    width: calc(100% - 15px) !important;
+}	
+
+.ui-accordion-content > div:hover .desccurso {
+	opacity:0.7;
+}
+
+.andamento { cursor: default !important; text-decoration: none !important; }
+
+@media screen and (max-width: 375px) {
+	#botao_listar_curso .nav { width: 100% !important; }
+	.nav_prev { text-align: center; margin-left: -25px; }
+	.nav_next { border: medium none; text-align: center; left: 0;}
+	.nav_next:first-child { border: medium none; left: 0; }
+}
+
+.arrowleft{
+	background-image: url("../../articles/images/arrowNav.png");
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	-webkit-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    background-repeat:no-repeat;
+	background-position: -5px 0;
+	float: left;
+	margin: 3px 0 0 0;
+}
+
+.arrowRight{
+	background-image: url("../../articles/images/arrowNav.png");
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+    background-repeat:no-repeat;
+    background-position: -5px 0;
+    float: right;
+    margin: 3px 0 0 0;
+}
+</style>
+
+
+		<div>
+			
+<section id="box_autor_revista">
+
+	<a class="linkDEV" href="http://www.mrbool.com/space.asp?id=436158"><img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/436158_20150806114251.jpg" border="0" width="70"></a><br>
+
+	<a class="nome_autor" href="http://www.mrbool.com/space.asp?id=436158" rel="author">Samarth Paboowal</a><br>
+
+	<p class="minibio_autor">CODING is my Passion first, hobby second and job third!
+I am Full Stack Developer from last two years and I love building scalable web applications and modern websites with new technologies.I started with my web development with ...</p>
+</section>
+		</div>
+		
+		<a name="comentariosArtigo"></a>
+		<section id="feedback_rodape"> 
+			<div id="div_frase_feedback_rodape">What did you think of this post?</div>
+			
+<div id="box_vota_rodape">			
+
+	
+	<div class="float_left">
+		<a class="linkfeedback voted" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#"><img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/handUp.png" border="0"></a>
+	</div>
+	
+	<div class="float_left">
+		<a class="linkfeedback voted" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#">&nbsp;Like (2)</a>
+	</div>
+
+			
+	<div class="separador_feedback_rodape2">
+		<a class="linkfeedback voted" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#"><img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/handDown_peq2.png" border="0"></a>
+	</div>
+	
+	<div class="separador_feedback_rodape1">	
+		<a class="linkfeedback voted" href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#"><span class="feedback_rodape1"> (0)</span></a>
+	</div>
+	
+	
+	
+	<div class="t_clear_both"></div>
+</div>
+	
+			<div class="t_clear_both"></div>
+		</section>
+		
+		<div id="socialbuttons">
+			<center>
+				<div class="facebook">
+	<span class="st_facebook_hcount" displaytext="Facebook" st_url="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span><span class="stMainServices st-facebook-counter" style="background-image: url(&quot;http://w.sharethis.com/images/2017/facebook_counter.png&quot;);">&nbsp;</span><span class="stArrow"><span class="stButton_gradient stHBubble" style="display: inline-block;"><span class="stBubble_hcount">295</span></span></span></span></span></span>
+</div>
+
+<div class="twitter">
+	<span class="st_twitter_hcount" displaytext="Tweet" st_url="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span><span class="stMainServices st-twitter-counter" style="background-image: url(&quot;http://w.sharethis.com/images/2017/twitter_counter.png&quot;);">&nbsp;</span><span class="stArrow"><span class="stButton_gradient stHBubble" style="display: inline-block;"><span class="stBubble_hcount">5</span></span></span></span></span></span>
+</div>
+
+<div class="linkedin">
+	<span class="st_linkedin_hcount" displaytext="Linkedin" st_url="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span><span class="stMainServices st-linkedin-counter" style="background-image: url(&quot;http://w.sharethis.com/images/2017/linkedin_counter.png&quot;);">&nbsp;</span><span class="stArrow"><span class="stButton_gradient stHBubble" style="display: inline-block;"><span class="stBubble_hcount">4</span></span></span></span></span></span>
+</div>
+
+<div class="sharethis">
+	<span class="st_sharethis_hcount" displaytext="Sharethis" st_url="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044" st_processed="yes"><span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton"><span><span class="stMainServices st-sharethis-counter" style="background-image: url(&quot;http://w.sharethis.com/images/2017/sharethis_counter.png&quot;);">&nbsp;</span><span class="stArrow"><span class="stButton_gradient stHBubble" style="display: inline-block;"><span class="stBubble_hcount">309</span></span></span></span></span></span>
+</div>
+			</center>
+		</div>
+		<aside id="div_comentarios">
+			
+<div id="div_poste_comentario">
+
+			 <!--<center><span style="color:black;font-size:10pt;">
+			 4 comments have been posted. 
+			 
+			 
+			 </span>&nbsp;&nbsp;<a href='http://mrbool.com/rte3/addcomment.asp?idcomp=34044' class='link_primeiro_comentar'><span style="font-size:10pt;background-color:grey;color:white;padding:5px;"><b>Add your comment</b></center></span></a>-->
+			 
+			 <a href="http://mrbool.com/rte3/addcomment.asp?idcomp=34044" class="link_primeiro_comentar"><center>Add your comment</center></a>
+			
+<!--<div id="popcoment">
+	<a href="#coment" onclick="document.getElementById('popcoment').style.display='none';">[Fechar]</a>
+	<br /><br>
+	Este post é fechado - você precisa ter acesso ao post para incluir um comentário.<BR><BR>
+</div>-->
+
+
+
+</div>
+
+
+
+ <div style="float:left;padding:5px;">
+			<img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/usuariosemfoto.png" width="45">
+	
+
+		
+		
+		</div>
+	<div class="answer" style="margin-left:80px;font-family:verdana;	font-size:8pt;	letter-spacing:0.04em; 	line-height:19px;	color:grey;">
+		  <span style="color:black;">yogesh</span><br>
+
+		  nice one would you like  provide  complete code !!
+			  <br>
+			  [+1 year ago]
+     	  &nbsp;&nbsp;
+		  <a href="http://mrbool.com/rte3/addcomment.asp?idcomp=34044&amp;idco_pai=79485">
+		  Answer it</a>
+	   
+	</div>
+
+	<div style="clear:both;">&nbsp;</div>
+
+	<div>  </div>	
+
+	
+		<!--<div style="clear:both;"></div>-->
+		<div id="row_divide_comentario" style="width: 100%;border-top-color: #D8D8D8;border-top-width: 1px;border-top-style: solid;margin-bottom: 10px;"></div>
+	
+ <div style="float:left;padding:5px;">
+			<img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/usuariosemfoto.png" width="45">
+	
+
+		
+		
+		</div>
+	<div class="answer" style="margin-left:80px;font-family:verdana;	font-size:8pt;	letter-spacing:0.04em; 	line-height:19px;	color:grey;">
+		  <span style="color:black;">Sunil</span><br>
+
+		  Thanx for the nice post.
+I've followed you step by step but finally I've got some error. Please help to resolve the same.
+
+Notice: Undefined variable: con in C:\xampp\htdocs\MyChat\index.php on line 29
+
+Fatal error: Call to a member function query() on null in C:\xampp\htdocs\MyChat\index.php on line 29
+			  <br>
+			  [+1 year ago]
+     	  &nbsp;&nbsp;
+		  <a href="http://mrbool.com/rte3/addcomment.asp?idcomp=34044&amp;idco_pai=80467">
+		  Answer it</a>
+	   
+	</div>
+
+	<div style="clear:both;">&nbsp;</div>
+
+	<div>  </div>	
+
+	
+		<!--<div style="clear:both;"></div>-->
+		<div id="row_divide_comentario" style="width: 100%;border-top-color: #D8D8D8;border-top-width: 1px;border-top-style: solid;margin-bottom: 10px;"></div>
+	
+ <div style="float:left;padding:5px;">
+			<img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/usuariosemfoto.png" width="45">
+	
+
+		
+		
+		</div>
+	<div class="answer" style="margin-left:80px;font-family:verdana;	font-size:8pt;	letter-spacing:0.04em; 	line-height:19px;	color:grey;">
+		  <span style="color:black;">sai</span><br>
+
+		  i want a complete code
+
+			  <br>
+			  [+1 year ago]
+     	  &nbsp;&nbsp;
+		  <a href="http://mrbool.com/rte3/addcomment.asp?idcomp=34044&amp;idco_pai=92421">
+		  Answer it</a>
+	   
+	</div>
+
+	<div style="clear:both;">&nbsp;</div>
+
+	<div>  </div>	
+
+	
+		<!--<div style="clear:both;"></div>-->
+		<div id="row_divide_comentario" style="width: 100%;border-top-color: #D8D8D8;border-top-width: 1px;border-top-style: solid;margin-bottom: 10px;"></div>
+	
+ <div style="float:left;padding:5px;">
+			<img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/usuariosemfoto.png" width="45">
+	
+
+		
+		
+		</div>
+	<div class="answer" style="margin-left:80px;font-family:verdana;	font-size:8pt;	letter-spacing:0.04em; 	line-height:19px;	color:grey;">
+		  <span style="color:black;">sai</span><br>
+
+		  where is the element with id="chat" in ajax program 
+			  <br>
+			  [+1 year ago]
+     	  &nbsp;&nbsp;
+		  <a href="http://mrbool.com/rte3/addcomment.asp?idcomp=34044&amp;idco_pai=92422">
+		  Answer it</a>
+	   
+	</div>
+
+	<div style="clear:both;">&nbsp;</div>
+
+	<div>  </div>	
+
+	
+	<div style="min-height:70px;"></div>
+
+		</aside>
+	</div>
+	<div id="span_sec" class="span4" style="border:0px solid #000;">
+		<style>
+.box_servicos_new {
+    max-width: 336px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+</style>
+<section class="box_servicos_new"> 
+<div class="box_post_title"><center>Services</center></div>
+<div class="conteudo_box_servicos">
+
+	
+	
+	<div>
+		
+			<a class="linkservico" href="http://www.mrbool.com/rte3/addcomment.asp?idcomp=34044" rel="nofollow">Add a comment</a>
+		
+	</div>
+
+	<div class="link_box_servico">
+		<a href="http://mrbool.com/favorite/addfavorite.asp?comp=34044" class="linkservico" rel="nofollow">Add to favorites</a>
+	</div>
+
+	<div class="link_box_servico">
+		<a href="http://mrbool.com/favorite/add_finished.asp?comp=34044" class="linkservico" rel="nofollow">Mark as viewed</a>
+	</div>
+
+	<div class="link_box_servico">
+		<a class="linkservico" href="http://mrbool.com/articles/addnote.asp?idcomp=34044" rel="nofollow">Add a note</a>				  						
+	</div>
+
+</div>
+</section>
+	<div id="box_artigo_canal">  
+		<div id="div_link_canal">
+			<a href="http://mrbool.com/channel/php">+Php</a> 
+		</div>
+	</div>
+
+	</div>
+</div>
+</div>
+</section>
+<!--FECHAR AQUI-->
+
+<section class="container-fluid relacionados">
+<div class="container">
+<div class="row-fluid">
+	<div class="span12">
+		<p class="titulo_relacionados">Related Posts</p> 
+		
+		<div class="separador10px"></div>
+
+		<nav class="nav_relacionados">
+			<ul class="ul_lista_relacionados">
+				
+				<li class="lista_relacionados">
+					<div id="tipo_post_relacionado">Post</div> 
+					<div id="box_titulo_post_relacionado"><a href="http://mrbool.com/getting-started-with-yii-2-framework/36830" class="titulo_post_relacionado">Getting started with Yii 2 Framework</a></div>
+					<div style="display:none;">11</div>
+				</li>
+				
+				<li class="lista_relacionados">
+					<div id="tipo_post_relacionado">Post</div> 
+					<div id="box_titulo_post_relacionado"><a href="http://mrbool.com/getting-started-with-codeigniter/36826" class="titulo_post_relacionado">Getting started with CodeIgniter</a></div>
+					<div style="display:none;">11</div>
+				</li>
+				
+				<li class="lista_relacionados">
+					<div id="tipo_post_relacionado">Post</div> 
+					<div id="box_titulo_post_relacionado"><a href="http://mrbool.com/how-to-insert-retrieve-json-data-to-from-database-using-php/36810" class="titulo_post_relacionado">How to Insert/Retrieve JSON Data to/from Database using PHP</a></div>
+					<div style="display:none;">11</div>
+				</li>
+				
+				<li class="lista_relacionados">
+					<div id="tipo_post_relacionado">Post</div> 
+					<div id="box_titulo_post_relacionado"><a href="http://mrbool.com/building-web-applications-with-laravel-framework/36779" class="titulo_post_relacionado">Building Web Applications with Laravel Framework</a></div>
+					<div style="display:none;">11</div>
+				</li>
+				
+				<li class="lista_relacionados">
+					<div id="tipo_post_relacionado">Post</div> 
+					<div id="box_titulo_post_relacionado"><a href="http://mrbool.com/php-yii-framework-working-with-database-in-practice/36778" class="titulo_post_relacionado">PHP Yii Framework: Working with database in practice</a></div>
+					<div style="display:none;">11</div>
+				</li>
+				
+				<li class="lista_relacionados">
+					<div id="tipo_post_relacionado">Post</div> 
+					<div id="box_titulo_post_relacionado"><a href="http://mrbool.com/php-best-practices-and-technique-patterns/33777" class="titulo_post_relacionado">PHP Best Practices and Technique Patterns</a></div>
+					<div style="display:none;">11</div>
+				</li>
+				
+				<li class="lista_relacionados">
+					<div id="tipo_post_relacionado">Post</div> 
+					<div id="box_titulo_post_relacionado"><a href="http://mrbool.com/how-to-track-users-registration-location-in-google-maps/33562" class="titulo_post_relacionado">How to track Users Registration location in Google Maps</a></div>
+					<div style="display:none;">11</div>
+				</li>
+				
+			</ul>
+		</nav>
+
+		<div class="separador10px"></div>
+
+		<div id="div_listar_relacionados">
+			<div class="botao_listar_relacionados"> 
+				<center><a href="http://mrbool.com/channel/php" class="link_listar_relacionados">Show more</a></center>
+			</div>
+		</div> 
+	</div> 
+</div> 
+</div> 
+</section> 
+<section class="container-fluid renova">
+<div class="container">	
+	<div class="row-fluid">	
+		
+	</div>
+</div>
+</section>
+<!-- :::: -->
+<div id="pop">
+	<a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" onclick="document.getElementById(&#39;pop&#39;).style.display=&#39;none&#39;;"><font face="verdana" size="2"><b>[Close]</b></font></a><br>
+	<div style="margin-top:8px;"><span style="line-height:18px;"><font face="VErdana" size="2">To have full access to this post (or download the associated files) you must have <b><a href="http://www.mrbool.com/creditos/default.asp?p=1">MrBool Credits</a></b>.<font size="1"><br><br><img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/info.jpg">&nbsp;&nbsp;See the prices for this post in Mr.Bool Credits System below:<font size="1"><br><br><font size="2"><b>Individually</b><font size="2" color="black"> – in this case the price for this post is <b>US$ 0,00 <a href="https://secure.mrbool.com/buymrboolcredits.asp?comp=34044" rel="nofollow"><font color="#FF0000">(Buy it now)</font></a><br><font color="black"></font></b><font color="black"><font size="1">in this case you will buy only this video by paying the full price with no discount.<br><br><b><font size="2">Package of 10 credits<font size="2" color="black"></font></font></b><font size="2"><font size="2" color="black"> - in this case the price for this post is <b>US$ 0,00</b><br><font size="1">This subscription is ideal if you want to download few videos. In this  plan you will receive a discount of 50% in each video. <a href="https://secure.mrbool.com/buymrboolcredits.asp?v=0"><font size="2" color="#FF0000"><b>Subscribe for this package!</b></font></a><br><br>  <b><font size="2" color="black">Package of 50 credits</font></b><font size="2" color="black"> <font size="2" color="black"> – in this case the price for this post is <b>US$ 0,00</b><br><font size="1">This subscription is ideal if you want to download several videos. In this plan you will receive a discount of 83% in each video.<a href="https://secure.mrbool.com/buymrboolcredits.asp?tp=1"> <font size="2" color="#FF0000"><b>Subscribe for this package!</b></font></a><br><br><br><font size="2"><a href="http://www.mrbool.com/creditos/default.asp?p=1">&gt; More info about MrBool Credits</a><br> </font></font></font></font></font></font></font></font></font></font></font></font></font></font></span></div><font face="VErdana" size="2"><font size="2"><font color="black"><font size="1"><font size="2"><font size="2" color="black"><font size="1"><font size="2" color="black"><font size="2" color="black"><font size="1">
+</font></font></font></font></font></font></font></font></font></font></div><font face="VErdana" size="2"><font size="2"><font color="black"><font size="1"><font size="2"><font size="2" color="black"><font size="1"><font size="2" color="black"><font size="2" color="black"><font size="1">
+<div id="pop2">
+	<a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" onclick="document.getElementById(&#39;pop2&#39;).style.display=&#39;none&#39;;"><font face="verdana" size="2"><b>[Close]</b></font></a>
+	<br>
+	You must be logged to download.<br><br>
+	<a href="http://mrbool.com/login/login.asp?comp=34044">Click here to login</a><br><br>
+</div>
+<div id="poplogin">
+	<a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" onclick="document.getElementById(&#39;poplogin&#39;).style.display=&#39;none&#39;;"><font face="verdana" size="2"><b>[Close]</b></font></a>
+	
+			You must be logged to give your feedback.
+		
+		<br><br>
+		<a href="http://mrbool.com/login/login.asp?comp=34044">Click here to login</a><br><br>
+		<a href="http://mrbool.com/join/">If you don't have a MrBool registration, click here to register (free)</a>
+	
+</div>
+<div id="poplink">
+	<a href="http://mrbool.com/building-a-chat-application-with-php-javascript-and-ajax/34044#" onclick="document.getElementById(&#39;poplink&#39;).style.display=&#39;none&#39;;"><font face="verdana" size="2"><b>[Close]</b></font></a>
+	<br><br>
+	This is a closed post. You need have acess to enable the download links.<br><br>
+</div>
+<!-- :::: -->
+            <section class="dm-limitfoot"></section>
+            <footer>
+                <section class="container-fluid footer-box dm-cor1">
+                    <div class="container ">
+                        <div class="row-fluid">
+                            <div class="span7 f-box-filho">
+                                <div class="row-fluid cx2">
+                                    <img src="./Building a Chat Application with PHP, JavaScript and Ajax_files/logo-footer.png" alt="Mr.Bool - Java, .Net, Database, Scripting and Delphi courses" title="Mr.Bool - Java, .Net, Database, Scripting and Delphi courses" width="145" height="32">
+                                    <nav><a href="http://mrbool.com/contact-us/" target="_blank">Contact us</a>|<a href="http://mrbool.com/portal/publish.asp">Publish your post</a></nav>
+                                </div>
+                                <ul class="social-bar">
+                                    <li><a class="icon-1" href="https://www.facebook.com/MrBool.Website" target="_blank"></a></li>
+                                    <li><a class="icon-3" href="https://twitter.com/mrboolteam" target="_blank"></a></li>
+                                    <li><a class="icon-4" href="https://plus.google.com/+Mrbool" target="_blank"></a></li>
+                                    <li><a class="icon-2" href="http://mrbool.com/feed/"></a></li>
+                                </ul>
+                            </div>
+                            <div class="span5 cx3">
+                                <div class="fb-shell">
+                                    <div class="fb-like-box">
+                                        <div id="fb-root"></div>
+                                        <div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/MrBool.Website" data-width="765" data-height="184" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=183030088570010&amp;container_width=470&amp;height=184&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FMrBool.Website&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;show_posts=false&amp;small_header=true&amp;width=765"><span style="vertical-align: bottom; width: 470px; height: 120px;"><iframe name="f46bf2533bf814" width="765px" height="184px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" title="fb:page Facebook Social Plugin" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/page.html" style="border: none; visibility: visible; width: 470px; height: 120px;" class=""></iframe></span></div>
+                                    </div>
+								</div>
+                            </div>
+                        </div>
+                    </div>				
+                </section>					
+                <section class="container-fluid dm-cor2 footer-box2">
+                    <div class="container ">
+                        <div class="row-fluid">
+                            <div class="span4"><a href="http://mrbool.com/">MrBool.com</a></div>
+                            <div class="span4">Copyright 2016 - all rights reserved to
+                            	<a href="http://www.web-03.net/" target="_blank" rel="nofollow">www.web-03.net</a>
+                            </div>
+                        </div>
+                    </div>
+                </section><!-- FIM DESSA CRIANÇA -->
+            </footer><!-- FIM BLOCO FOOTER -->
+        </font></font></font></font></font></font></font></font></font></font></section><iframe src="./Building a Chat Application with PHP, JavaScript and Ajax_files/rt=ifr.html" style="position: absolute; overflow: hidden; visibility: hidden; height: 1px; width: 1px; bottom: 1px; left: 1px;"></iframe><font face="VErdana" size="2"><font size="2"><font color="black"><font size="1"><font size="2"><font size="2" color="black"><font size="1"><font size="2" color="black"><font size="2" color="black"><font size="1">
+	
+<script>  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <script type="text/javascript">
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '183030088570010',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.2' // use version 2.2
+  });
+ };
+  </script>
+</font></font></font></font></font></font></font></font></font></font><div id="stcpDiv" style="position: absolute; top: -1999px; left: -1988px;">ShareThis Copy and Paste</div><div id="stwrapper" class="stwrapper stwrapper5x stwrapper5x" style="display: none;"><iframe allowtransparency="true" id="stLframe" class="stLframe" name="stLframe" frameborder="0" scrolling="no" src="./Building a Chat Application with PHP, JavaScript and Ajax_files/index.d828c62cb267134a2ff73e996941b961.html"></iframe></div><div id="stOverlay" onclick="javascript:stWidget.closeWidget();"></div></body></html>

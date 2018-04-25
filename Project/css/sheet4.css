@@ -1,0 +1,50 @@
+
+body .container
+{
+	padding:  10px;
+} 
+body .row 
+{
+   /*border-bottom: 3px solid black;*/
+   padding: 1%;
+
+
+   background-color: beige;
+   min-height: 200px;
+}   
+body .col-xs-12.col-md-8, .col-xs-6.col-md-4 
+{  
+   
+   /*background-color:silver;*/
+   padding: 10px;
+   border-radius: 20px 20px 0px 0px;
+   color: black;
+
+   
+}
+
+.container-fluid .row h2
+{
+border-bottom: 2.5px solid black;
+}
+
+button #gen {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+button #gen:hover {background-color: #3e8e41}
+
+button #gen:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

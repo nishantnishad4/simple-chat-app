@@ -1,0 +1,115 @@
+$(function(){
+$(".login-pop").css("display", "none");
+$(".popover1,.popover2,.dm-shadow").click(function(){
+if($(".login-pop").hasClass("deslogado")){$(".login-pop").toggleClass("bg-off");}
+else{$(".login-pop").toggleClass("bg-on");}
+if($(".login-pop").hasClass("bg-off")){$(".login-pop").css("display", "block");}
+else if($(".login-pop").hasClass("bg-on")){$(".login-pop").css("display", "block");}
+else{
+$(".login-pop").css("display", "none");	
+}
+$(".login-form").toggle();
+$(".dm-shadow").toggle();
+});
+$(window).resize(function(){
+$("nav.lateral, nav.lateral>ul").height($(this).height());
+//$("header nav.lateral>ul ul").css({"min-height":$("header nav.lateral>ul").height()+"px"});
+//$("header nav.lateral>ul ul").height($("header nav.lateral>ul").height());
+//if($("header nav.lateral>ul").height()>$(this).height()){$("header nav.lateral>ul ul").height($("header nav.lateral>ul").height());}
+//else{$("header nav.lateral>ul ul").height($("header nav.lateral>ul").height());}
+//alert($("header nav.lateral ul").height());
+});
+$(document).keyup(function(e){
+if(e.keyCode==27 && $("header nav.lateral").css("display")=="block"){//esc
+$("nav.lateral").fadeOut(100).find(".active").removeClass("active");
+$(".opacity").fadeOut(100);
+$("body").css({"overflow":"auto"});
+}
+});
+$(".opacity,nav.lateral").click(function(e){
+if($(e.target).attr('class')=="lateral"){
+$("nav.lateral").fadeOut(100).find(".active").removeClass("active");
+$(".opacity").fadeOut(100);
+$("body").css({"overflow":"auto"});
+}
+});
+$(".menu").click(function(event){
+event.preventDefault();
+$("body").css({"overflow":"hidden"});
+$("nav.lateral").css({"display":"table"});
+$("nav.lateral,.opacity").fadeIn(100,function(){
+$("nav.lateral,.opacity").css({"display":"block"});
+$("nav.lateral>ul").css({"display":"table"});
+$("nav.lateral").height($(window).height());
+});
+});
+$("nav.lateral li a").click(function(event){
+if($(this).attr("href")=="#") event.preventDefault();
+var alvo = $(this).parent().parent().find(".active");
+if(alvo.length){event.preventDefault();alvo.removeClass("active");}
+else{$(this).parent().children("ul").addClass("active");$("nav.lateral").scrollTop(0);}
+});
+$("nav.lateral li .home").click(function(){
+$("nav.lateral").find(".active").removeClass("active");
+});
+$("nav.lateral li .back").click(function(){
+if($(this).data("main")==true){
+$("nav.lateral").fadeOut(100).find(".active").removeClass("active");
+$("header .opacity").fadeOut(100);
+$("body").css({"overflow":"auto"});
+}
+else{$(this).parent().parent().parent().find(".active").removeClass("active");}
+});
+// });
+
+
+/*
+https://gist.github.com/kaku87/6052362
+*/
+// $(function(){
+	$(".linkFacebook").click(function(event) {
+		event.preventDefault();
+		
+		//http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen
+		// Fixes dual-screen position                         Most browsers      Firefox
+		var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+		var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+		
+		var w = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+		var h = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+		
+		var width = 575;
+		var height = 210;
+		var left = ((w / 2) - (width / 2)) + dualScreenLeft;
+		var top = ((h / 2) - (height / 2)) + dualScreenTop;
+		
+		var popup = window.open(this.href, 'share', "width="+width+", height="+height+", top="+top+", left="+left);
+		popup.window.focus();
+	});
+});
+
+/*function popupCallback(data){
+	if(data.status == 1){
+		$(".list-data").html(
+			'<div class="container">'+
+		        '<div class="row-fluid">'+
+		            '<div class="span12 dm-libg dm-devware" style="border-top:5px solid #302f31">'+
+		            	'<div class="dm-lifree" style="display:inline-block; padding-right:10px;margin-top:-5px;font-family:\'Conv_Nexa Bold\', Arial, Tahoma;border-top:5px solid #E54D26;">'+
+							'<h3 style="text-align:left;display:block;text-transform:uppercase; color:#302f31;margin:10px 0;line-height:40px;font-size:24.5px;">Sign up MrBool</h3>'+
+						'</div>'+
+					'</div>'+
+					'<div class="mensagemOk" style="margin: 0 0 40px; color: #656565; font-size: 17px; font-family: Arial, Tahoma; line-height: 120%;">'+
+						'<span>Congratulations, '+ data.content.name +'! You have joined the Mr Bool community!<br><br>Mr Bool Team<br> <a href="http://www.mrbool.com" style="font-weight: bold; color: #e54d26; text-decoration: none;">www.mrbool.com</a></span>'+
+					'</div>'+
+				'</div>'+
+			'</div>'
+		);
+	} else if(data.status == 2){
+		window.location.href = "http://www.mrbool.com";
+	} else if(data.status == 3){
+		alert(data.content);
+	} else {
+		alert("nada aconteceu");
+	}
+}
+*/

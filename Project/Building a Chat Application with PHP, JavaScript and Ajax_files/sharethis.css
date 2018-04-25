@@ -1,0 +1,63 @@
+.st_plusone_vcount iframe{vertical-align:baseline !important;}
+.st_plusone_vcount div{
+display:block !important;
+margin-right: 0 !important;
+margin-top: 0 !important;
+width:50px !important;
+}
+.st_fblike_vcount span{margin:0 !important;}
+.count{
+	display:block;
+	background: white;
+	border: 1px solid lightGrey;
+	font-size: 15px;
+	font-family: arial,sans-serif !important;
+	height: 24px;
+	margin: 0;
+	/*min-width: 32px;*/
+	width:52px;
+	/*padding: 6px 1px 2px 3px;*/
+	padding: 6px 0 0 0;
+	text-align: center;
+	white-space: nowrap;
+	border-radius:3px;
+}
+.social-arrow{
+background:transparent url(http://www.devmedia.com.br/imagens/portal2010/social-arrow.png) no-repeat 0 0;
+display: block;
+margin:-1px auto 3px auto;
+width: 7px;
+height: 5px;
+}
+.box-sharethis{
+cursor:pointer;
+display:table;
+border:0px solid #000;
+}
+.img-fb{
+background:transparent url(http://w.sharethis.com/images/facebook_32.png) no-repeat 0 0;
+display: block;
+width: 32px;
+height: 32px;
+}
+.img-twit{
+background:transparent url(http://www.devmedia.com.br/imagens/portal2010/tweet.png) no-repeat 0 0;
+display: block;
+width: 59px;
+height: 20px;
+}
+.img-sharethis{
+background:transparent url(http://www.devmedia.com.br/imagens/portal2010/sharethis.png) no-repeat 0 0;
+display: block;
+width: 59px;
+height: 22px;
+}
+.img-linkedin{
+background:transparent url(http://w.sharethis.com/images/linkedin_counter.png) no-repeat 0 0;
+display: block;
+width: 60px;
+height: 22px;
+}
+.box-sharethis:hover .img-fb,.box-sharethis:hover .img-twit,.box-sharethis:hover .img-linkedin,.box-sharethis:hover .img-sharethis{
+opacity: 0.75;
+}
